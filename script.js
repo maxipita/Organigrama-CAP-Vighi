@@ -150,6 +150,12 @@ const NODE_DATA = {
       "Distribución y retiro de muestras",
     ],
   },
+  "responsable-citos": {
+    items: [],
+  },
+  "area-inmunohistoquimica": {
+    items: [],
+  },
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -221,8 +227,8 @@ function drawConnectors() {
   const fanMidY = medicaR.bottom + (Math.min(...fanChildren.map(c => c.top)) - medicaR.bottom) / 2;
   const supervBranchY = medicaR.bottom + (fanMidY - medicaR.bottom) * 0.5;
   addPath(svg, `M ${medicaR.centerX} ${supervBranchY} L ${supervR.left - 12} ${supervBranchY} L ${supervR.left - 12} ${supervR.centerY}`, true);
-  fanOut(svg, container, get("administrativa"), [get("area-administrativa"), get("area-logistica")]);
-  fanOut(svg, container, get("subdireccion"), [get("area-medica"), get("area-tecnica")]);
+  fanOut(svg, container, get("administrativa"), [get("responsable-citos"), get("area-administrativa"), get("area-logistica")]);
+  fanOut(svg, container, get("subdireccion"), [get("area-medica"), get("area-tecnica"), get("area-inmunohistoquimica")]);
 
   // Level guide line: centered on badges, with gaps around each pill
   const pills = Array.from(document.querySelectorAll(".level-badge-cell")).map(el => {
