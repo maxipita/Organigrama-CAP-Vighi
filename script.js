@@ -202,15 +202,45 @@ function drawConnectors() {
   // Direct vertical link with arrow (exec -> medica)
   lineWithArrow(svg, container, get("exec"), get("medica"), "down");
 
-  // Side branches (same row, arrow points into the target box)
-  sideBranch(svg, container, get("exec"), get("asistente"), "left");
-  sideBranch(svg, container, get("medica"), get("tecnologia"), "left");
-  sideBranch(svg, container, get("medica"), get("supervision"), "right");
+  // Asistente branches off the midpoint of the exec->medica vertical connector
+  const execR = rectRelativeTo(get("exec"), container);
+  const medicaR = rectRelativeTo(get("medica"), container);
+  const asistR = rectRelativeTo(get("asistente"), container);
+  const midY = execR.bottom + (medicaR.top - execR.bottom) / 2;
+  addPath(svg, `M ${execR.centerX} ${midY} L ${asistR.right + GAP} ${midY}`, true);
+
+  // Tecnologia: now on the right side, arrow points into its left edge
+  sideBranch(svg, container, get("medica"), get("tecnologia"), "right");
 
   // Fan-outs
   fanOut(svg, container, get("medica"), [get("administrativa"), get("comercial"), get("subdireccion")]);
+
+  // Supervision: branches off the trunk before the fan bar, then drops to card center
+  const supervR = rectRelativeTo(get("supervision"), container);
+  const fanChildren = [get("administrativa"), get("comercial"), get("subdireccion")].map(el => rectRelativeTo(el, container));
+  const fanMidY = medicaR.bottom + (Math.min(...fanChildren.map(c => c.top)) - medicaR.bottom) / 2;
+  const supervBranchY = medicaR.bottom + (fanMidY - medicaR.bottom) * 0.5;
+  addPath(svg, `M ${medicaR.centerX} ${supervBranchY} L ${supervR.left - 12} ${supervBranchY} L ${supervR.left - 12} ${supervR.centerY}`, true);
   fanOut(svg, container, get("administrativa"), [get("area-administrativa"), get("area-logistica")]);
   fanOut(svg, container, get("subdireccion"), [get("area-medica"), get("area-tecnica")]);
+
+  // Level guide line: centered on badges, with gaps around each pill
+  const pills = Array.from(document.querySelectorAll(".level-badge-cell")).map(el => {
+    const children = Array.from(el.children).map(c => rectRelativeTo(c, container));
+    return {
+      top: Math.min(...children.map(r => r.top)),
+      bottom: Math.max(...children.map(r => r.bottom)),
+    };
+  });
+  if (pills.length) {
+    const lineX = rectRelativeTo(document.querySelector(".level-badge"), container).centerX;
+    const padY = 10;
+    addDashedPath(svg, `M ${lineX} 0 L ${lineX} ${pills[0].top - padY}`);
+    for (let i = 0; i < pills.length - 1; i++) {
+      addDashedPath(svg, `M ${lineX} ${pills[i].bottom + padY} L ${lineX} ${pills[i + 1].top - padY}`);
+    }
+    addDashedPath(svg, `M ${lineX} ${pills[pills.length - 1].bottom + padY} L ${lineX} ${container.offsetHeight}`);
+  }
 }
 
 function addPath(svg, d, withArrow) {
@@ -223,12 +253,24 @@ function addPath(svg, d, withArrow) {
   svg.appendChild(path);
 }
 
+const GAP = 12;
+
+function addDashedPath(svg, d) {
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", d);
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "#c9b8dd");
+  path.setAttribute("stroke-width", "2");
+  path.setAttribute("stroke-dasharray", "6 4");
+  svg.appendChild(path);
+}
+
 // Vertical straight line from one node down to another, with arrowhead
 function lineWithArrow(svg, container, fromEl, toEl, direction) {
   const a = rectRelativeTo(fromEl, container);
   const b = rectRelativeTo(toEl, container);
   if (direction === "down") {
-    addPath(svg, `M ${a.centerX} ${a.bottom} L ${b.centerX} ${b.top}`, true);
+    addPath(svg, `M ${a.centerX} ${a.bottom} L ${b.centerX} ${b.top - GAP}`, true);
   }
 }
 
@@ -238,9 +280,9 @@ function sideBranch(svg, container, parentEl, childEl, direction) {
   const c = rectRelativeTo(childEl, container);
   const y = c.centerY;
   if (direction === "left") {
-    addPath(svg, `M ${p.centerX} ${y} L ${c.right} ${y}`, true);
+    addPath(svg, `M ${p.centerX} ${y} L ${c.right + GAP} ${y}`, true);
   } else {
-    addPath(svg, `M ${p.centerX} ${y} L ${c.left} ${y}`, true);
+    addPath(svg, `M ${p.centerX} ${y} L ${c.left - GAP} ${y}`, true);
   }
 }
 
@@ -264,7 +306,7 @@ function fanOut(svg, container, parentEl, childEls) {
 
   // drop into each child
   children.forEach((c) => {
-    addPath(svg, `M ${c.centerX} ${midY} L ${c.centerX} ${c.top}`, true);
+    addPath(svg, `M ${c.centerX} ${midY} L ${c.centerX} ${c.top - GAP}`, true);
   });
 }
 
@@ -286,7 +328,8 @@ function setupModal() {
       const extra = NODE_DATA[node.id] || {};
 
       roleEl.textContent = role;
-      nameEl.textContent = name || "Vacante / a definir";
+      nameEl.textContent = name;
+      nameEl.style.display = name ? "block" : "none";
       iconEl.innerHTML = ICONS[iconName] || ICONS.user;
 
       if (extra.description) {

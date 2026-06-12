@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Segoe+UI:wght@400;600;700&display=swap");
 
 :root {
-  --indigo: #423e8e;
-  --magenta: #c41d7f;
-  --dark-1: #3d3877;
-  --dark-2: #211c4a;
+  --indigo: #3D0054;
+  --magenta: #A62E7F;
+  --dark-1: #3A2054;
+  --dark-2: #3D0054;
   --light-bg: #f7eef8;
   --light-border: #e7d6ee;
-  --text-dark: #3a2466;
-  --text-muted: #8577a0;
-  --line-color: #9486b8;
+  --text-dark: #3D0054;
+  --text-muted: #AC68BA;
+  --line-color: #AC68BA;
   --badge-grad: linear-gradient(135deg, var(--indigo), var(--magenta));
   --page-bg-1: #fdfbff;
   --page-bg-2: #f3e8f6;
@@ -43,18 +43,73 @@ body {
 /* ---------- HEADER ---------- */
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 44px;
-  padding-bottom: 20px;
+  margin-bottom: 0;
+  padding: 20px 28px;
+  background: #fff;
+  border-bottom: 1px solid var(--light-border);
+  border-radius: 0;
 }
 
-.brand-logo-full {
-  max-width: 380px;
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--indigo);
+  text-transform: uppercase;
+}
+
+.header-name {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--dark-2);
+  line-height: 1.15;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.header-tagline {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--indigo);
+  max-width: 340px;
+  text-align: right;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .header-tagline {
+    text-align: left;
+  }
 }
 
 /* ---------- CHART ---------- */
@@ -66,9 +121,9 @@ body {
 .chart-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 130px repeat(18, minmax(50px, 1fr));
+  grid-template-columns: 130px repeat(26, minmax(50px, 1fr));
   grid-auto-rows: minmax(64px, auto);
-  row-gap: 88px;
+  row-gap: 160px;
   column-gap: 14px;
   align-items: stretch;
   min-width: 1280px;
@@ -100,7 +155,7 @@ body {
   grid-column: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 6px;
   z-index: 2;
@@ -122,7 +177,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--text-muted);
-  padding-left: 4px;
+  text-align: center;
 }
 
 .level-note {
@@ -130,8 +185,8 @@ body {
   font-style: italic;
   line-height: 1.35;
   color: var(--text-muted);
-  padding-left: 4px;
   max-width: 110px;
+  text-align: center;
 }
 
 /* ---------- NODES ---------- */
