@@ -66,12 +66,12 @@ body {
 .chart-grid {
   position: relative;
   display: grid;
-  grid-template-columns: 130px repeat(9, minmax(105px, 1fr));
+  grid-template-columns: 130px repeat(18, minmax(50px, 1fr));
   grid-auto-rows: minmax(64px, auto);
   row-gap: 88px;
   column-gap: 14px;
   align-items: stretch;
-  min-width: 1180px;
+  min-width: 1280px;
   padding: 10px 10px 30px;
 }
 
@@ -123,6 +123,15 @@ body {
   letter-spacing: 0.12em;
   color: var(--text-muted);
   padding-left: 4px;
+}
+
+.level-note {
+  font-size: 0.66rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--text-muted);
+  padding-left: 4px;
+  max-width: 110px;
 }
 
 /* ---------- NODES ---------- */
@@ -214,7 +223,6 @@ body {
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  white-space: nowrap;
 }
 
 .node--small .node-title {
@@ -225,7 +233,6 @@ body {
   font-size: 0.7rem;
   font-weight: 400;
   opacity: 0.85;
-  white-space: nowrap;
 }
 
 /* ---------- MODAL ---------- */
@@ -252,7 +259,9 @@ body {
   border-radius: 18px;
   padding: 36px 40px;
   min-width: 280px;
-  max-width: 90vw;
+  max-width: min(560px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
   text-align: center;
   position: relative;
   box-shadow: 0 20px 50px rgba(32, 18, 59, 0.3);
@@ -307,6 +316,37 @@ body {
 .modal-name {
   font-size: 0.95rem;
   color: var(--text-muted);
+}
+
+.modal-description {
+  display: none;
+  text-align: left;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-dark);
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--light-border);
+}
+
+.modal-list {
+  display: none;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin-top: 14px;
+  padding-top: 14px;
+  padding-left: 1.3em;
+  border-top: 1px solid var(--light-border);
+}
+
+.modal-list li {
+  margin-bottom: 6px;
+}
+
+.modal-list li::marker {
+  color: var(--magenta);
 }
 
 /* ---------- RESPONSIVE ---------- */

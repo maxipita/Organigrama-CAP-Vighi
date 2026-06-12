@@ -6,6 +6,150 @@ const ICONS = {
   briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
   chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
   users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>',
+  flask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>',
+  truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
+  doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>',
+};
+
+// ---------- ROLE DETAILS ----------
+const NODE_DATA = {
+  asistente: {
+    description:
+      "Brinda soporte ejecutivo y administrativo a la Dirección Ejecutiva y a la Dirección Médica, asegurando la coordinación eficiente de los procesos institucionales y el seguimiento de las prioridades estratégicas de la organización.",
+    items: [
+      "Coordinación de agendas institucionales",
+      "Organización y documentación de reuniones ejecutivas",
+      "Monitoreo de compromisos y planes de acción",
+      "Gestión administrativa de la Dirección",
+      "Soporte en relaciones institucionales y comerciales",
+    ],
+  },
+  exec: {
+    items: [
+      "Definición de la estrategia corporativa",
+      "Desarrollo y expansión institucional",
+      "Alianzas estratégicas",
+      "Sostenibilidad económica y financiera",
+      "Liderazgo organizacional",
+    ],
+  },
+  medica: {
+    items: [
+      "Estrategia médica institucional",
+      "Calidad y seguridad diagnóstica",
+      "Innovación tecnológica aplicada a Anatomía Patológica",
+      "Patología Digital e Inteligencia Artificial",
+      "Desarrollo científico y académico",
+      "Relaciones institucionales",
+      "Expansión nacional y regional",
+      "Definición de estándares médicos y de calidad",
+    ],
+  },
+  comercial: {
+    items: [
+      "Implementar la estrategia comercial de la organización",
+      "Gestionar y maximizar la rentabilidad en la búsqueda de financiamiento externo (bancos)",
+      "Seguimiento y gestión de la relación comercial con proveedores",
+      "Identificar oportunidades de crecimiento y expansión territorial",
+      "Desarrollar nuevos clientes e instituciones de salud",
+      "Gestionar la relación con clientes estratégicos",
+      "Elaborar propuestas comerciales y negociar contratos",
+      "Analizar el mercado y detectar oportunidades de negocio",
+      "Coordinar acciones de fidelización y satisfacción de clientes",
+      "Desarrollar alianzas estratégicas con instituciones y empresas del sector",
+      "Supervisar el posicionamiento institucional y la comunicación corporativa",
+      "Participar en la planificación y ejecución de proyectos de expansión nacional y regional",
+      "Monitorear indicadores comerciales y objetivos de crecimiento",
+      "Realizar seguimiento de la rentabilidad de clientes y unidades de negocio",
+    ],
+  },
+  administrativa: {
+    items: [
+      "Supervisar la gestión administrativa integral de la organización",
+      "Coordinar los procesos de facturación y cobranzas",
+      "Controlar el cumplimiento de los circuitos administrativos internos",
+      "Elaborar y monitorear presupuestos",
+      "Realizar seguimiento de costos, gastos y rentabilidad",
+      "Supervisar compras y abastecimiento de insumos",
+      "Garantizar el cumplimiento de normativas administrativas y regulatorias",
+      "Elaborar reportes de gestión para la Dirección",
+      "Impulsar la mejora continua y la eficiencia de los procesos administrativos",
+    ],
+  },
+  tecnologia: {
+    items: [
+      "Sistemas (SGV)",
+      "Integración con historias clínicas",
+      "Patología digital",
+      "Inteligencia Artificial",
+      "Automatización de procesos",
+    ],
+  },
+  supervision: {
+    items: [
+      "Gestión del Heat Map",
+      "Seguimiento de indicadores",
+      "Auditoría de procesos",
+      "Mejora continua",
+      "Optimización operativa",
+      "Interacción con áreas de IT",
+      "Nexo con Dirección Médica",
+    ],
+  },
+  subdireccion: {
+    description:
+      "La Subdirección Médica tiene como misión acompañar a la Dirección Médica en la gestión integral de la actividad asistencial y diagnóstica de CAP Vighi.",
+    items: [
+      "Coordinar y supervisar la actividad diaria del cuerpo médico",
+      "Asegurar el cumplimiento de los tiempos de respuesta diagnóstica",
+      "Monitorear la calidad técnica y científica de los informes",
+      "Promover la estandarización de criterios diagnósticos y plantillas",
+      "Liderar la implementación de mejoras operativas",
+      "Participar en la capacitación y desarrollo profesional",
+      "Actuar como nexo entre la Dirección Médica y el equipo médico",
+      "Impulsar proyectos de innovación y transformación digital",
+      "Promover trabajos científicos en sociedades nacionales e internacionales",
+      "Supervisión y coordinación de asistencia a congresos y jornadas del equipo médico",
+    ],
+  },
+  "area-medica": {
+    items: [
+      "Patólogos Staff",
+      "Patólogos Subespecialistas",
+      "Citología",
+      "Inmunohistoquímica",
+      "Biología Molecular",
+      "Inmunofluorescencia",
+    ],
+  },
+  "area-tecnica": {
+    items: [
+      "Macroscopía",
+      "Histotecnología",
+      "Inclusión",
+      "Corte",
+      "Coloración",
+      "Montaje",
+      "Escaneo digital",
+      "Archivo",
+    ],
+  },
+  "area-administrativa": {
+    items: [
+      "Ingreso de muestras",
+      "Facturación",
+      "Convenios",
+      "Atención al cliente",
+      "Gestión documental",
+    ],
+  },
+  "area-logistica": {
+    items: [
+      "Mensajería",
+      "Distribución y retiro de muestras",
+    ],
+  },
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -64,9 +208,9 @@ function drawConnectors() {
   sideBranch(svg, container, get("medica"), get("supervision"), "right");
 
   // Fan-outs
-  fanOut(svg, container, get("medica"), [get("admin"), get("comercial"), get("subdireccion")]);
-  fanOut(svg, container, get("admin"), [get("logistica"), get("paps"), get("biopsias")]);
-  fanOut(svg, container, get("subdireccion"), [get("ihq"), get("supervisor"), get("patologos")]);
+  fanOut(svg, container, get("medica"), [get("administrativa"), get("comercial"), get("subdireccion")]);
+  fanOut(svg, container, get("administrativa"), [get("area-administrativa"), get("area-logistica")]);
+  fanOut(svg, container, get("subdireccion"), [get("area-medica"), get("area-tecnica")]);
 }
 
 function addPath(svg, d, withArrow) {
@@ -79,7 +223,7 @@ function addPath(svg, d, withArrow) {
   svg.appendChild(path);
 }
 
-// Vertical (or horizontal) straight line from one node to another, with arrowhead
+// Vertical straight line from one node down to another, with arrowhead
 function lineWithArrow(svg, container, fromEl, toEl, direction) {
   const a = rectRelativeTo(fromEl, container);
   const b = rectRelativeTo(toEl, container);
@@ -131,16 +275,39 @@ function setupModal() {
   const roleEl = document.getElementById("modal-role");
   const nameEl = document.getElementById("modal-name");
   const iconEl = document.getElementById("modal-icon");
+  const descEl = document.getElementById("modal-description");
+  const listEl = document.getElementById("modal-list");
 
   document.querySelectorAll(".node").forEach((node) => {
     node.addEventListener("click", () => {
       const role = node.dataset.role || "";
       const name = node.dataset.name || "";
       const iconName = node.querySelector(".node-icon")?.dataset.icon || "user";
+      const extra = NODE_DATA[node.id] || {};
 
       roleEl.textContent = role;
       nameEl.textContent = name || "Vacante / a definir";
       iconEl.innerHTML = ICONS[iconName] || ICONS.user;
+
+      if (extra.description) {
+        descEl.textContent = extra.description;
+        descEl.style.display = "block";
+      } else {
+        descEl.textContent = "";
+        descEl.style.display = "none";
+      }
+
+      listEl.innerHTML = "";
+      if (extra.items && extra.items.length) {
+        extra.items.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          listEl.appendChild(li);
+        });
+        listEl.style.display = "block";
+      } else {
+        listEl.style.display = "none";
+      }
 
       overlay.classList.add("is-open");
     });
