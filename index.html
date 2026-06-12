@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organigrama · Dra. Susana Vighi - Centro de Anatomía Patológica</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <img src="assets/logo-full.png" alt="Dra. Susana Vighi - Centro de Anatomía Patológica" class="brand-logo-full">
+    </header>
+
+    <!-- CHART -->
+    <main class="chart-wrapper">
+      <div class="chart-grid" id="chart-grid">
+
+        <!-- Connector lines (drawn dynamically) -->
+        <svg id="connectors" class="connectors"></svg>
+
+        <!-- Level badges -->
+        <div class="level-line"></div>
+        <div class="level-badge-cell" style="grid-row: 1 / 3;">
+          <div class="level-badge">NIVEL 1</div>
+          <div class="level-caption">ESTRATÉGICO</div>
+        </div>
+        <div class="level-badge-cell" style="grid-row: 3;">
+          <div class="level-badge">NIVEL 2</div>
+          <div class="level-caption">TÁCTICO</div>
+        </div>
+        <div class="level-badge-cell" style="grid-row: 4;">
+          <div class="level-badge">NIVEL 3</div>
+          <div class="level-caption">OPERATIVO</div>
+        </div>
+
+        <!-- NIVEL 1 -->
+        <div class="node node--light" id="asistente" style="grid-row:1; grid-column: 2 / 5;"
+             data-role="Asistente de Dirección" data-name="Antonella Pandolfi">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">ASISTENTE DE DIRECCIÓN</span>
+            <span class="node-name">Antonella Pandolfi</span>
+          </span>
+        </div>
+
+        <div class="node node--dark" id="exec" style="grid-row:1; grid-column: 5 / 8;"
+             data-role="Dirección Ejecutiva" data-name="Emiliano Pastor">
+          <span class="node-icon node-icon--dark" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">DIRECCIÓN EJECUTIVA</span>
+            <span class="node-name">Emiliano Pastor</span>
+          </span>
+        </div>
+
+        <div class="node node--light" id="tecnologia" style="grid-row:2; grid-column: 2 / 5;"
+             data-role="Tecnología e Innovación" data-name="">
+          <span class="node-icon node-icon--light" data-icon="bulb"></span>
+          <span class="node-text">
+            <span class="node-title">TECNOLOGÍA E INNOVACIÓN</span>
+          </span>
+        </div>
+
+        <div class="node node--dark" id="medica" style="grid-row:2; grid-column: 5 / 8;"
+             data-role="Dirección Médica" data-name="Dra. Andrea Paparatto">
+          <span class="node-icon node-icon--dark" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">DIRECCIÓN MÉDICA</span>
+            <span class="node-name">Dra. Andrea Paparatto</span>
+          </span>
+        </div>
+
+        <div class="node node--light" id="supervision" style="grid-row:2; grid-column: 8 / 11;"
+             data-role="Supervisión de Procesos" data-name="Javier Pecollo">
+          <span class="node-icon node-icon--light" data-icon="gear"></span>
+          <span class="node-text">
+            <span class="node-title">SUPERVISIÓN DE PROCESOS</span>
+            <span class="node-name">Javier Pecollo</span>
+          </span>
+        </div>
+
+        <!-- NIVEL 2 -->
+        <div class="node node--light" id="admin" style="grid-row:3; grid-column: 2 / 5;"
+             data-role="Gerencia Administrativa" data-name="Nicolás Santillán">
+          <span class="node-icon node-icon--light" data-icon="briefcase"></span>
+          <span class="node-text">
+            <span class="node-title">GERENCIA ADMINISTRATIVA</span>
+            <span class="node-name">Nicolás Santillán</span>
+          </span>
+        </div>
+
+        <div class="node node--light" id="comercial" style="grid-row:3; grid-column: 5 / 8;"
+             data-role="Gerencia Comercial" data-name="Nicolás Santillán">
+          <span class="node-icon node-icon--light" data-icon="chart"></span>
+          <span class="node-text">
+            <span class="node-title">GERENCIA COMERCIAL</span>
+            <span class="node-name">Nicolás Santillán</span>
+          </span>
+        </div>
+
+        <div class="node node--light" id="subdireccion" style="grid-row:3; grid-column: 8 / 11;"
+             data-role="Subdirección Médica" data-name="">
+          <span class="node-icon node-icon--light" data-icon="users"></span>
+          <span class="node-text">
+            <span class="node-title">SUBDIRECCIÓN MÉDICA</span>
+          </span>
+        </div>
+
+        <!-- NIVEL 3 -->
+        <div class="node node--small" id="logistica" style="grid-row:4; grid-column: 2;"
+             data-role="Responsable de Logística" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">RESPONSABLE DE LOGÍSTICA</span>
+          </span>
+        </div>
+
+        <div class="node node--small" id="paps" style="grid-row:4; grid-column: 3;"
+             data-role="Responsable de PAPs" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">RESPONSABLE DE PAPS</span>
+          </span>
+        </div>
+
+        <div class="node node--small" id="biopsias" style="grid-row:4; grid-column: 4;"
+             data-role="Responsable de Biopsias" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">RESPONSABLE DE BIOPSIAS</span>
+          </span>
+        </div>
+
+        <div class="node node--small" id="ihq" style="grid-row:4; grid-column: 8;"
+             data-role="Supervisor IHQ" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">SUPERVISOR IHQ</span>
+          </span>
+        </div>
+
+        <div class="node node--small" id="supervisor" style="grid-row:4; grid-column: 9;"
+             data-role="Supervisor" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">SUPERVISOR</span>
+          </span>
+        </div>
+
+        <div class="node node--small" id="patologos" style="grid-row:4; grid-column: 10;"
+             data-role="Patólogos" data-name="">
+          <span class="node-icon node-icon--light" data-icon="user"></span>
+          <span class="node-text">
+            <span class="node-title">PATÓLOGOS</span>
+          </span>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
+        <div class="modal-icon" id="modal-icon"></div>
+        <h2 class="modal-role" id="modal-role"></h2>
+        <p class="modal-name" id="modal-name"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
